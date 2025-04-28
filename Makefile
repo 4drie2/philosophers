@@ -6,7 +6,7 @@
 #    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 14:51:49 by abidaux           #+#    #+#              #
-#    Updated: 2025/04/24 15:50:33 by abidaux          ###   ########.fr        #
+#    Updated: 2025/04/25 14:55:24 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -pthread
-	@echo "$(GREEN)$(NAME) successfully compiled!$(RESET)"
+	@echo "$(GREEN)$(NAME) successfully compiled, ready to eat!$(RESET)"
 	@echo "$(YELLOW)"
 	@echo "      🍴                Je mange, donc je suis                    🍴     " 
 	@echo "   o/   ____  _     _ _                       _                     \o  "
