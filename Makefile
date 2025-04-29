@@ -6,13 +6,13 @@
 #    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 14:51:49 by abidaux           #+#    #+#              #
-#    Updated: 2025/04/25 14:55:24 by abidaux          ###   ########.fr        #
+#    Updated: 2025/04/28 18:15:27 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra -pthread -g
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -40,7 +40,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -pthread
 	@echo "$(GREEN)$(NAME) successfully compiled, ready to eat!$(RESET)"
 	@echo "$(YELLOW)"
-	@echo "      🍴                Je mange, donc je suis                    🍴     " 
+	@echo "      🍴                Je mange, donc je suis                    🍴     "
 	@echo "   o/   ____  _     _ _                       _                     \o  "
 	@echo "  /|   |  _ \| |__ (_) | ___  ___  ___  _ __ | |__   ___ _ __ ___    |\ "
 	@echo "  / \  | |_) | '_ \| | |/ _ \/ __|/ _ \| '_ \| '_ \ / _ \ '__/ __|  / \ "
