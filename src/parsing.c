@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 12:42:47 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 12:46:33 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,34 @@ pthread_mutex_t	*init_forks(t_rules *rules)
 		}
 	}
 	return (forks);
+}
+
+/**
+ * init_philo - Fonction principale d'initialisation
+ * @param ac: Nombre d'arguments
+ * @param av: Tableau d'arguments
+ * @return: Structure rules contenant les paramètres initialisés
+ */
+t_philo	*init_philos(t_rules *rules, pthread_mutex_t *forks)
+{
+	t_philo	*philos;
+	int		i;
+
+	philos = malloc(sizeof(t_philo) * rules->nbr_philo);
+	if (!philos)
+		return (NULL);
+	i = -1;
+	while (++i < rules->nbr_philo)
+	{
+		philos[i].id = i + 1;
+		philos[i].n_meals_eaten = 0;
+		philos[i].last_meal_time = 0;
+		philos[i].rules = rules;
+		philos[i].left_fork = &forks[i];
+		if (i == rules->nbr_philo - 1)
+			philos[i].right_fork = &forks[0];
+		else
+			philos[i].right_fork = &forks[i + 1];
+	}
+	return (philos);
 }
