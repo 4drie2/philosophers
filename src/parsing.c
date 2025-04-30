@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 12:27:58 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 12:42:47 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ pthread_mutex_t	*init_forks(t_rules *rules)
 	forks = malloc(sizeof(pthread_mutex_t) * rules->nbr_philo);
 	if (!forks)
 		return (NULL);
-	i = 0;
-	while (i < rules->nbr_philo)
+	i = -1;
+	while (++i < rules->nbr_philo)
 	{
 		if (pthread_mutex_init(&forks[i], NULL) != 0)
 		{
@@ -78,7 +78,6 @@ pthread_mutex_t	*init_forks(t_rules *rules)
 			free(forks);
 			return (NULL);
 		}
-		i++;
 	}
 	return (forks);
 }
