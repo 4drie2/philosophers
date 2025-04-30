@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 09:54:29 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:01:26 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 /**
  * nombre de philosophe >= 1
  *  */
-
 
 void	free_philo(t_rules *philo, char *msg_error)
 {
