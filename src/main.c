@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/29 10:50:07 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 09:54:29 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  *  */
 
 
-void	free_philo(t_philo *philo, char *msg_error)
+void	free_philo(t_rules *philo, char *msg_error)
 {
 	if (!philo)
 		return ;
@@ -26,7 +26,7 @@ void	free_philo(t_philo *philo, char *msg_error)
 		perror(msg_error);
 }
 
-void	print_philo(t_philo *philo)
+void	print_philo(t_rules *philo)
 {
 	if (philo)
 	{
@@ -41,7 +41,7 @@ void	print_philo(t_philo *philo)
 
 int	main(int ac, char **av)
 {
-	t_philo	*philo;
+	t_rules	*philo;
 
 	if (!input_is_ok(ac, av))
 		return ((void)write(2, "Error: invalid input. Usage: "

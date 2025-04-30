@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/28 17:16:39 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 09:53:54 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ bool input_is_ok(int ac, char **av)
 }
 
 
-t_philo	*init_philo(int ac, char **av)
+t_rules	*init_rules(int ac, char **av)
 {
-	t_philo	*philo;
+	t_rules	*philo;
 
 	(void)ac, (void)av;
-	philo = malloc(sizeof(t_philo));
+	philo = malloc(sizeof(t_rules));
 	philo->keep_eating = true;
 	philo->n_meals_set = true;
 	philo->nbr_philo = ft_atoi(av[1]);
