@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 12:25:06 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 12:49:15 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,26 @@ void	better_usleep(long long ms)
 	}
 }
 
-void	free_philo(t_rules *philo, char *msg_error)
+void	free_forks(t_rules *rules)
 {
-	if (!philo)
+	int	i;
+
+	if (!rules->forks)
 		return ;
-	free(philo);
+	i = 0;
+	while (i < rules->nbr_philo)
+	{
+		pthread_mutex_destroy(&rules->forks[i]);
+		i++;
+	}
+	free(rules->forks);
+}
+
+void	free_philo(t_rules *rules, char *msg_error)
+{
+	if (!rules)
+		return ;
+	free(rules);
 	if (msg_error)
 		perror(msg_error);
 }

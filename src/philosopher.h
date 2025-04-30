@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:54:24 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 12:15:56 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 12:49:03 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ typedef struct s_philo
 
 typedef struct s_rules
 {
-	bool	keep_eating;
-	int		nbr_philo;
-	int		t_die;
-	int		t_eat;
-	int		t_sleep;
-	bool	n_meals_set;
-	int		n_meals;
+	bool			keep_eating;
+	int				nbr_philo;
+	int				t_die;
+	int				t_eat;
+	int				t_sleep;
+	bool			n_meals_set;
+	int				n_meals;
+	t_philo			*philos;
+	pthread_mutex_t	*forks;
 } t_rules;
 
 bool	input_is_ok(int ac, char **av);
