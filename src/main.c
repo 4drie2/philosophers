@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 11:01:26 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 11:01:56 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,32 @@
 /**
  * nombre de philosophe >= 1
  *  */
+
+/**
+ * better_usleep - Une implémentation plus précise de usleep
+ * @param ms: Temps d'attente en millisecondes
+ *
+ * Cette fonction utilise gettimeofday pour mesurer le temps écoulé
+ * avec précision et fait de courtes pauses avec usleep pour ne pas
+ * surcharger le CPU.
+ */
+void	better_usleep(long long ms)
+{
+	struct timeval	start;
+	struct timeval	current;
+	long long		elapsed;
+
+	gettimeofday(&start, NULL);
+	while (1)
+	{
+		usleep(50);
+		gettimeofday(&current, NULL);
+		elapsed = (current.tv_sec - start.tv_sec) * 1000
+				+ (current.tv_usec - start.tv_usec) / 1000;
+		if (elapsed >= ms)
+			break;
+	}
+}
 
 void	free_philo(t_rules *philo, char *msg_error)
 {
