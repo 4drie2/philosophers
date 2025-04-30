@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 09:53:54 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/04/30 12:20:01 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,4 @@ t_rules	*init_rules(int ac, char **av)
 		philo->n_meals_set = false;
 	return (philo);
 }
+
