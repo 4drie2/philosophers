@@ -6,9 +6,11 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:54:24 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/09 17:41:47 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/09 17:47:06 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
