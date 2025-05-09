@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:54:24 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 12:56:40 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/09 17:32:52 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ bool			is_number(char *number);
 int				ft_atoi(char *nbr);
 void			free_philo(t_rules *philo, char *msg_error);
 void			better_usleep(long long ms);
-t_philo			*init_philos(t_rules *rules, pthread_mutex_t *forks);
 pthread_mutex_t	*init_forks(t_rules *rules);
+t_philo			*init_philos(t_rules *rules, pthread_mutex_t *forks);

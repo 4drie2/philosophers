@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/04/30 12:49:12 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/09 17:35:23 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ pthread_mutex_t	*init_forks(t_rules *rules)
 }
 
 /**
- * init_philo - Fonction principale d'initialisation
- * @param ac: Nombre d'arguments
- * @param av: Tableau d'arguments
- * @return: Structure rules contenant les paramètres initialisés
+ * init_philos - Initialise les philosophes
+ * @param rules: Structure contenant les règles
+ * @param forks: Tableau de mutex pour les fourchettes
+ * @return: Tableau de philosophes initialisés, NULL en cas d'erreur
  */
 t_philo	*init_philos(t_rules *rules, pthread_mutex_t *forks)
 {
