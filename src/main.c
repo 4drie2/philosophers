@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/09 17:39:50 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/09 17:41:49 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	free_forks(t_rules *rules)
 }
 
 /**
- * free_philo - Libère toutes les ressources allouées
+ * free_rules - Libère toutes les ressources allouées
  * @param rules: Structure contenant les règles
  * @param msg_error: Message d'erreur à afficher
  */
-void	free_philo(t_rules *rules, char *msg_error)
+void	free_rules(t_rules *rules, char *msg_error)
 {
 	if (!rules)
 		return ;
@@ -85,6 +85,6 @@ int	main(int ac, char **av)
 				"./philo nbr_philo t_die t_eat t_sleep [n_meals]\n", 77), 0);
 	rules = init_rules(ac, av);
 	philo = init_philos(rules, init_forks(rules));
-	free_philo(philo, NULL);
+	free_rules(rules, NULL);
 	return (0);
 }
