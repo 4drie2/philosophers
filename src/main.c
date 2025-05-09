@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/09 17:35:58 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/09 17:39:50 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,6 @@ void	free_philo(t_rules *rules, char *msg_error)
 		perror(msg_error);
 }
 
-void	print_philo(t_rules *philo)
-{
-	if (philo)
-	{
-		printf("Philosopher: %d\n", philo->nbr_philo);
-		printf("Time to die: %dms\n", philo->t_die);
-		printf("Time to eat: %dms\n", philo->t_eat);
-		printf("Time to sleep: %dms\n", philo->t_sleep);
-		if (philo->n_meals_set)
-			printf("Number of meals: %d\n", philo->n_meals);
-	}
-}
-
 int	main(int ac, char **av)
 {
 	t_philo	*philo;
@@ -98,7 +85,6 @@ int	main(int ac, char **av)
 				"./philo nbr_philo t_die t_eat t_sleep [n_meals]\n", 77), 0);
 	rules = init_rules(ac, av);
 	philo = init_philos(rules, init_forks(rules));
-	print_philo(philo);
 	free_philo(philo, NULL);
 	return (0);
 }
