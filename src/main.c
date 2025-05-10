@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/10 12:31:45 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/10 13:08:26 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	better_usleep(long long ms)
 void	free_forks(t_rules *rules)
 {
 	int	i;
-
 	if (!rules->forks)
 		return ;
 	i = -1;
@@ -77,16 +76,20 @@ void	free_rules(t_rules *rules, char *msg_error)
 
 int	main(int ac, char **av)
 {
-	t_philo	*philos;
-	t_rules	*rules;
+	t_philo			*philos;
+	t_rules			*rules;
+	pthread_mutex_t	*forks;
 
 	if (!input_is_ok(ac, av))
 		return ((void)write(2, "Error: invalid input. Usage: "
 				"./philo nbr_philo t_die t_eat t_sleep [n_meals]\n", 77), 0);
 	if (!init_rules(&rules, ac, av))
 		return(write(2, "error with init rules\n", 22), 1);
-	if (!init_philos(&philos, rules, init_forks(rules)))
+	if (!init_forks(&forks, rules))
+		return (free_rules(rules, "error with init forks"), 1);
+	if (!init_philos(&philos, rules, forks))
 		return (free_rules(rules, "error with init philo"), 1);
 	free_rules(rules, NULL);
+	free(philos);
 	return (0);
 }

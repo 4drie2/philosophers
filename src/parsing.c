@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/10 12:30:04 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/10 12:55:56 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,26 +60,25 @@ int	init_rules(t_rules **rules, int ac, char **av)
  * @param rules: Structure contenant les règles
  * @return: Tableau de mutex initialisés, NULL en cas d'erreur
  */
-pthread_mutex_t	*init_forks(t_rules *rules)
+int	init_forks(pthread_mutex_t **forks, t_rules *rules)
 {
-	pthread_mutex_t	*forks;
 	int				i;
 
-	forks = malloc(sizeof(pthread_mutex_t) * rules->nbr_philo);
-	if (!forks)
-		return (NULL);
+	(*forks) = malloc(sizeof(pthread_mutex_t) * rules->nbr_philo);
+	if (!(*forks))
+		return (0);
 	i = -1;
 	while (++i < rules->nbr_philo)
 	{
-		if (pthread_mutex_init(&forks[i], NULL) != 0)
+		if (pthread_mutex_init(&(*forks)[i], NULL) != 0)
 		{
 			while (--i >= 0)
-				pthread_mutex_destroy(&forks[i]);
-			free(forks);
-			return (NULL);
+				pthread_mutex_destroy(&(*forks)[i]);
+			free((*forks));
+			return (0);
 		}
 	}
-	return (forks);
+	return(1);
 }
 
 /**
