@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/10 13:08:26 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/10 13:12:27 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,10 @@ int	main(int ac, char **av)
 		return(write(2, "error with init rules\n", 22), 1);
 	if (!init_forks(&forks, rules))
 		return (free_rules(rules, "error with init forks"), 1);
+	rules->forks = forks;
 	if (!init_philos(&philos, rules, forks))
 		return (free_rules(rules, "error with init philo"), 1);
+	rules->philos = philos;
 	free_rules(rules, NULL);
-	free(philos);
 	return (0);
 }
