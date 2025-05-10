@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/09 17:35:23 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/10 12:30:04 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,23 @@ bool input_is_ok(int ac, char **av)
 }
 
 
-t_rules	*init_rules(int ac, char **av)
+int	init_rules(t_rules **rules, int ac, char **av)
 {
-	t_rules	*philo;
-
 	(void)ac, (void)av;
-	philo = malloc(sizeof(t_rules));
-	philo->keep_eating = true;
-	philo->n_meals_set = true;
-	philo->nbr_philo = ft_atoi(av[1]);
-	philo->t_die = ft_atoi(av[2]);
-	philo->t_eat = ft_atoi(av[3]);
-	philo->t_sleep = ft_atoi(av[4]);
+	(*rules) = malloc(sizeof(t_rules));
+	if (!(*rules))
+		return (0);
+	(*rules)->keep_eating = true;
+	(*rules)->n_meals_set = true;
+	(*rules)->nbr_philo = ft_atoi(av[1]);
+	(*rules)->t_die = ft_atoi(av[2]);
+	(*rules)->t_eat = ft_atoi(av[3]);
+	(*rules)->t_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		philo->n_meals = ft_atoi(av[5]);
+		(*rules)->n_meals = ft_atoi(av[5]);
 	else
-		philo->n_meals_set = false;
-	return (philo);
+		(*rules)->n_meals_set = false;
+	return (1);
 }
 
 /**
@@ -88,26 +88,25 @@ pthread_mutex_t	*init_forks(t_rules *rules)
  * @param forks: Tableau de mutex pour les fourchettes
  * @return: Tableau de philosophes initialisés, NULL en cas d'erreur
  */
-t_philo	*init_philos(t_rules *rules, pthread_mutex_t *forks)
+int	init_philos(t_philo **philos , t_rules *rules, pthread_mutex_t *forks)
 {
-	t_philo	*philos;
 	int		i;
 
-	philos = malloc(sizeof(t_philo) * rules->nbr_philo);
-	if (!philos)
-		return (NULL);
+	*philos = malloc(sizeof(t_philo) * rules->nbr_philo);
+	if (!*philos)
+		return (0);
 	i = -1;
 	while (++i < rules->nbr_philo)
 	{
-		philos[i].id = i + 1;
-		philos[i].n_meals_eaten = 0;
-		philos[i].last_meal_time = 0;
-		philos[i].rules = rules;
-		philos[i].left_fork = &forks[i];
+		(*philos)[i].id = i + 1;
+		(*philos)[i].n_meals_eaten = 0;
+		(*philos)[i].last_meal_time = 0;
+		(*philos)[i].rules = rules;
+		(*philos)[i].left_fork = &forks[i];
 		if (i == rules->nbr_philo - 1)
-			philos[i].right_fork = &forks[0];
+			(*philos)[i].right_fork = &forks[0];
 		else
-			philos[i].right_fork = &forks[i + 1];
+			(*philos)[i].right_fork = &forks[i + 1];
 	}
-	return (philos);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/09 17:48:34 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/10 12:31:45 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,16 @@ void	free_rules(t_rules *rules, char *msg_error)
 
 int	main(int ac, char **av)
 {
-	t_philo	*philo;
+	t_philo	*philos;
 	t_rules	*rules;
 
 	if (!input_is_ok(ac, av))
 		return ((void)write(2, "Error: invalid input. Usage: "
 				"./philo nbr_philo t_die t_eat t_sleep [n_meals]\n", 77), 0);
-	rules = init_rules(ac, av);
-	philo = init_philos(rules, init_forks(rules));
+	if (!init_rules(&rules, ac, av))
+		return(write(2, "error with init rules\n", 22), 1);
+	if (!init_philos(&philos, rules, init_forks(rules)))
+		return (free_rules(rules, "error with init philo"), 1);
 	free_rules(rules, NULL);
 	return (0);
 }
