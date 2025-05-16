@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:54:24 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/10 12:56:04 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/16 18:52:37 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ typedef struct s_rules
 	int				t_sleep;
 	bool			n_meals_set;
 	int				n_meals;
+	long			start_time;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;  // Pour éviter le mélange des messages
+	pthread_mutex_t	meal_mutex;   // Pour protéger les informations de repas
+	pthread_mutex_t	state_mutex;  // Pour protéger keep_eatin
 } t_rules;
 
 bool			input_is_ok(int ac, char **av);
