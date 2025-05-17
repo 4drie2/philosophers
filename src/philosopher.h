@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:54:24 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/17 15:29:42 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/17 18:19:32 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ typedef struct s_rules
 void	free_forks(t_rules *rules);
 void	free_rules(t_rules *rules, char *msg_error);
 void	clean_up(t_rules *rules);
-
-/* main.c */
 
 /* parsing.c */
 bool	input_is_ok(int ac, char **av);
