@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/17 15:25:15 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/17 19:36:14 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ bool	input_is_ok(int ac, char **av)
 			return (false);
 		if (i == 5 && value < 0)
 			return (false);
+		if (i == 1 && value > 15000)
+			return (printf("Too many philosophers kill the philosopher"),
+				false);
 	}
 	return (true);
 }
