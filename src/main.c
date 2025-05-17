@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/17 15:36:51 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/17 19:25:30 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,16 +166,16 @@ int	main(int ac, char **av)
 	if (!init_rules(&rules, ac, av))
 		return (1);
 	if (!init_forks(&rules->forks, rules))
-		return (free_rules(rules, "Error: Could not initialize forks\n"), 1);
+		return (clean_up(rules, "Error: Could not initialize forks\n"), 1);
 	if (!init_philos(&rules->philos, rules, rules->forks))
-		return (free_rules(rules, "Error:"
+		return (clean_up(rules, "Error:"
 				"Could not initialize philosophers\n"), 1);
-	if (pthread_mutex_init(&rules->print_mutex, NULL) != 0
-		|| pthread_mutex_init(&rules->meal_mutex, NULL) != 0
-		|| pthread_mutex_init(&rules->state_mutex, NULL) != 0)
-		return (free_rules(rules, "Error: Could not initialize mutexes\n"), 1);
+	if (pthread_mutex_init(&rules->print_mutex, NULL)
+		|| pthread_mutex_init(&rules->meal_mutex, NULL)
+		|| pthread_mutex_init(&rules->state_mutex, NULL))
+		return (clean_up(rules, "Error: Could not initialize mutexes\n"), 1);
 	if (!start_simulation(rules))
-		return (clean_up(rules), 1);
-	clean_up(rules);
+		return (clean_up(rules, "error with start_simulation"), 1);
+	clean_up(rules, NULL);
 	return (0);
 }

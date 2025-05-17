@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:42:33 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/17 15:27:26 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/17 19:10:00 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,36 @@ void	better_usleep(long long ms)
 	start_time = get_time_ms();
 	while (get_time_ms() < start_time + ms)
 		usleep(500);
+}
+
+/**
+ * @brief Cleans up all allocated resources at the end of the program
+ *
+ * This function destroys all mutexes and frees all memory allocated during
+ * the program execution, preventing memory leaks and ensuring proper cleanup.
+ *
+ * @param rules Pointer to the main structure containing all program data
+ * @param msg_error Optional error message to display (NULL if no error)
+ */
+void	clean_up(t_rules *rules, char *msg_error)
+{
+	int	i;
+
+	if (!rules)
+		return ;
+	if (rules->forks)
+	{
+		i = -1;
+		while (++i < rules->nbr_philo)
+			pthread_mutex_destroy(&rules->forks[i]);
+		free(rules->forks);
+	}
+	pthread_mutex_destroy(&rules->print_mutex);
+	pthread_mutex_destroy(&rules->meal_mutex);
+	pthread_mutex_destroy(&rules->state_mutex);
+	if (rules->philos)
+		free(rules->philos);
+	free(rules);
+	if (msg_error)
+		perror(msg_error);
 }

@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:54:24 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/17 18:19:32 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/17 19:10:14 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,6 @@ typedef struct s_rules
 	pthread_mutex_t	state_mutex;
 }	t_rules;
 
-/* free.c */
-void	free_forks(t_rules *rules);
-void	free_rules(t_rules *rules, char *msg_error);
-void	clean_up(t_rules *rules);
-
 /* parsing.c */
 bool	input_is_ok(int ac, char **av);
 int		init_rules(t_rules **rules, int ac, char **av);
@@ -70,3 +65,4 @@ int		ft_atoi(char *nbr);
 bool	is_number(char *number);
 void	better_usleep(long long ms);
 long	get_time_ms(void);
+void	clean_up(t_rules *rules, char *msg_error);
