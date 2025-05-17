@@ -6,16 +6,16 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 19:39:52 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/10 12:55:56 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/17 15:25:15 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-bool input_is_ok(int ac, char **av)
+bool	input_is_ok(int ac, char **av)
 {
-	int i;
-	long value;
+	int		i;
+	long	value;
 
 	if (ac < 5 || ac > 6)
 		return (false);
@@ -34,7 +34,6 @@ bool input_is_ok(int ac, char **av)
 	}
 	return (true);
 }
-
 
 int	init_rules(t_rules **rules, int ac, char **av)
 {
@@ -78,7 +77,7 @@ int	init_forks(pthread_mutex_t **forks, t_rules *rules)
 			return (0);
 		}
 	}
-	return(1);
+	return (1);
 }
 
 /**
@@ -87,9 +86,9 @@ int	init_forks(pthread_mutex_t **forks, t_rules *rules)
  * @param forks: Tableau de mutex pour les fourchettes
  * @return: Tableau de philosophes initialisés, NULL en cas d'erreur
  */
-int	init_philos(t_philo **philos , t_rules *rules, pthread_mutex_t *forks)
+int	init_philos(t_philo **philos, t_rules *rules, pthread_mutex_t *forks)
 {
-	int		i;
+	int	i;
 
 	*philos = malloc(sizeof(t_philo) * rules->nbr_philo);
 	if (!*philos)
