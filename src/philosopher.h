@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:54:24 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/17 19:10:14 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/19 20:23:53 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <stdbool.h>
 #include <limits.h>
 #include <sys/time.h>
+#include <errno.h>
 
 typedef struct s_philo
 {

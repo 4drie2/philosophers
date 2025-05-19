@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:18:01 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/17 15:27:52 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/19 20:24:51 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,35 @@ void	print_status(t_philo *philo, char *status)
 }
 
 /**
+ * @brief Helper function to lock a fork with timeout and state checks
+ */
+static bool	lock_fork(pthread_mutex_t *fork, t_philo *philo)
+{
+	struct timespec	timeout;
+	int				ret;
+
+	while (1)
+	{
+		pthread_mutex_lock(&philo->rules->state_mutex);
+		if (!philo->rules->keep_eating)
+			return (pthread_mutex_unlock(&philo->rules->state_mutex), false);
+		pthread_mutex_unlock(&philo->rules->state_mutex);
+		clock_gettime(CLOCK_REALTIME, &timeout);
+		timeout.tv_nsec += 1000000;
+		if (timeout.tv_nsec >= 1000000000)
+		{
+			timeout.tv_sec += 1;
+			timeout.tv_nsec -= 1000000000;
+		}
+		ret = pthread_mutex_timedlock(fork, &timeout);
+		if (ret == 0)
+			return (true);
+		else if (ret != ETIMEDOUT)
+			return (false);
+	}
+}
+
+/**
  * @brief Allows a philosopher to take both forks needed for eating
  *
  * Implements a deadlock prevention strategy by having even and odd-numbered
@@ -51,16 +80,26 @@ void	take_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
-		pthread_mutex_lock(philo->right_fork);
+		if (!lock_fork(philo->right_fork, philo))
+			return ;
 		print_status(philo, "has taken a fork");
-		pthread_mutex_lock(philo->left_fork);
+		if (!lock_fork(philo->left_fork, philo))
+		{
+			pthread_mutex_unlock(philo->right_fork);
+			return ;
+		}
 		print_status(philo, "has taken a fork");
 	}
 	else
 	{
-		pthread_mutex_lock(philo->left_fork);
+		if (!lock_fork(philo->left_fork, philo))
+			return ;
 		print_status(philo, "has taken a fork");
-		pthread_mutex_lock(philo->right_fork);
+		if (!lock_fork(philo->right_fork, philo))
+		{
+			pthread_mutex_unlock(philo->left_fork);
+			return ;
+		}
 		print_status(philo, "has taken a fork");
 	}
 }
