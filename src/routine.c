@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:18:01 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/19 20:24:51 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/20 18:45:57 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	take_forks(t_philo *philo)
 			pthread_mutex_unlock(philo->right_fork);
 			return ;
 		}
-		print_status(philo, "has taken a fork");
 	}
 	else
 	{
@@ -100,8 +99,8 @@ void	take_forks(t_philo *philo)
 			pthread_mutex_unlock(philo->left_fork);
 			return ;
 		}
-		print_status(philo, "has taken a fork");
 	}
+	print_status(philo, "has taken a fork");
 }
 
 /**
