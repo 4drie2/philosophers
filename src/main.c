@@ -6,13 +6,13 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/19 20:28:35 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/20 12:29:07 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-/* tester: https://github.com/MichelleJiam/LazyPhilosophersTester */
+/* tester : https://github.com/MichelleJiam/LazyPhilosophersTester */
 
 /**
  * @brief Checks if all philosophers have eaten enough meals
