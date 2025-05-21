@@ -6,7 +6,7 @@
 #    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 14:51:49 by abidaux           #+#    #+#              #
-#    Updated: 2025/04/28 18:15:27 by abidaux          ###   ########.fr        #
+#    Updated: 2025/05/21 16:26:33 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,10 @@ YELLOW = \033[0;33m
 BLUE = \033[0;34m
 RESET = \033[0m
 
-# Utilisation de wildcard pour trouver tous les fichiers .c
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(SRC_DIR)/main.c \
+	$(SRC_DIR)/parsing.c \
+	$(SRC_DIR)/routine.c \
+	$(SRC_DIR)/utils.c
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
