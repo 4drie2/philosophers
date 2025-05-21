@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:18:01 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/21 16:20:56 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/21 16:37:22 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_status(t_philo *philo, char *status)
 	if (philo->rules->keep_eating)
 	{
 		current_time = get_time_ms() - philo->rules->start_time;
-		printf("%ld %d %s\n", current_time, philo->id, status);
+		printf("%5ld %3d %s\n", current_time, philo->id, status);
 	}
 	pthread_mutex_unlock(&philo->rules->print_mutex);
 }
