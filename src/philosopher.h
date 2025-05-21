@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:54:24 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/19 20:23:53 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/21 14:39:08 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		init_philos(t_philo **philo, t_rules *rules, pthread_mutex_t *forks);
 
 /* routine.c */
 void	print_status(t_philo *philo, char *status);
-void	take_forks(t_philo *philo);
+bool	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void	*philo_routine(void *arg);
 
