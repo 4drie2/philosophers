@@ -1,4 +1,3 @@
-```markdown
 # 🍝 Philosophers Project 🧠
 
 ## Overview
@@ -36,4 +35,3 @@ The program displays status messages with perfectly aligned numbers for better r
 If you're learning about thread synchronization, mutex locks, or concurrent programming in C, feel free to use this code as a reference. I've designed it to be clear and straightforward while properly implementing all the required synchronization mechanisms.
 
 Happy philosophizing! 🤔🍴
-```
