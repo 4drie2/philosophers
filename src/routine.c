@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:18:01 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/22 10:35:57 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/22 10:36:57 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,16 @@ void	print_status(t_philo *philo, char *status)
 }
 
 /**
- * @brief Helper function to lock a fork with timeout and state checks
+ * @brief Attempts to lock a fork mutex while checking simulation state
+ *
+ * This function tries to acquire a lock on a fork while ensuring the simulation
+ * is still running. It checks two main conditions:
+ * 1. If the simulation should continue (keep_eating flag)
+ * 2. If there are enough philosophers for the dining problem to be valid
+ *
+ * @param fork The mutex representing the fork to be locked
+ * @param philo Pointer to the philosopher's data structure
+ * @return true if the fork was successfully locked, false otherwise
  */
 static bool	lock_fork(pthread_mutex_t *fork, t_philo *philo)
 {
