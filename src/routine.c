@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:18:01 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/22 10:16:26 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/22 10:35:57 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,15 @@ void	print_status(t_philo *philo, char *status)
  */
 static bool	lock_fork(pthread_mutex_t *fork, t_philo *philo)
 {
-	int	ret;
-
-	while (1)
-	{
-		pthread_mutex_lock(&philo->rules->state_mutex);
-		if (!philo->rules->keep_eating)
-			return (pthread_mutex_unlock(&philo->rules->state_mutex), false);
-		pthread_mutex_unlock(&philo->rules->state_mutex);
-		if (philo->rules->nbr_philo > 1)
-			ret = pthread_mutex_lock(fork);
-		if (ret == 0)
-			return (true);
-		else if (ret != ETIMEDOUT)
-			return (false);
-	}
+	pthread_mutex_lock(&philo->rules->state_mutex);
+	if (!philo->rules->keep_eating)
+		return (pthread_mutex_unlock(&philo->rules->state_mutex), false);
+	pthread_mutex_unlock(&philo->rules->state_mutex);
+	if (philo->rules->nbr_philo <= 1)
+		return (false);
+	if (pthread_mutex_lock(fork) != 0)
+		return (false);
+	return (true);
 }
 
 /**
