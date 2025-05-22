@@ -6,13 +6,13 @@
 #    By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/24 14:51:49 by abidaux           #+#    #+#              #
-#    Updated: 2025/05/21 16:26:33 by abidaux          ###   ########.fr        #
+#    Updated: 2025/05/21 20:10:49 by abidaux          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pthread -g
+CFLAGS = -Wall -Werror -Wextra -pthread -g -fsanitize=thread
 
 SRC_DIR = src
 OBJ_DIR = obj
