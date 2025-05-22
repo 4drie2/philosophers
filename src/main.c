@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/24 14:53:25 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/20 12:29:07 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/22 10:14:43 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static bool	check_philo_death(t_rules *rules)
 		{
 			pthread_mutex_unlock(&rules->meal_mutex);
 			pthread_mutex_lock(&rules->print_mutex);
-			printf("%ld %d died\n", current_time - rules->start_time,
+			printf("%5ld %3d died\n", current_time - rules->start_time,
 				rules->philos[i].id);
 			pthread_mutex_unlock(&rules->print_mutex);
 			pthread_mutex_lock(&rules->state_mutex);
