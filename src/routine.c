@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:18:01 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/22 10:36:57 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/22 10:37:32 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,6 @@ void	*philo_routine(void *arg)
 			break ;
 		}
 		pthread_mutex_unlock(&philo->rules->state_mutex);
-		print_status(philo, "is thinking");
 		if (take_forks(philo))
 		{
 			eat(philo);
@@ -157,6 +156,7 @@ void	*philo_routine(void *arg)
 			pthread_mutex_unlock(philo->right_fork);
 			print_status(philo, "is sleeping");
 			better_usleep(philo->rules->t_sleep);
+			print_status(philo, "is thinking");
 		}
 	}
 	return (NULL);
