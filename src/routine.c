@@ -6,7 +6,7 @@
 /*   By: abidaux <abidaux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 15:18:01 by abidaux           #+#    #+#             */
-/*   Updated: 2025/05/22 10:14:22 by abidaux          ###   ########.fr       */
+/*   Updated: 2025/05/22 10:16:26 by abidaux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@ void	print_status(t_philo *philo, char *status)
  */
 static bool	lock_fork(pthread_mutex_t *fork, t_philo *philo)
 {
-	struct timespec	timeout;
-	int				ret;
+	int	ret;
 
 	while (1)
 	{
@@ -52,14 +51,8 @@ static bool	lock_fork(pthread_mutex_t *fork, t_philo *philo)
 		if (!philo->rules->keep_eating)
 			return (pthread_mutex_unlock(&philo->rules->state_mutex), false);
 		pthread_mutex_unlock(&philo->rules->state_mutex);
-		clock_gettime(CLOCK_REALTIME, &timeout);
-		timeout.tv_nsec += 1000000;
-		if (timeout.tv_nsec >= 1000000000)
-		{
-			timeout.tv_sec += 1;
-			timeout.tv_nsec -= 1000000000;
-		}
-		ret = pthread_mutex_timedlock(fork, &timeout);
+		if (philo->rules->nbr_philo > 1)
+			ret = pthread_mutex_lock(fork);
 		if (ret == 0)
 			return (true);
 		else if (ret != ETIMEDOUT)
